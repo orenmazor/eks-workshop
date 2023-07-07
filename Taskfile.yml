@@ -1,0 +1,19 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  connectivity:
+    cmds:
+      # make sure we're connected to aws
+      - aws sts get-caller-identity
+      # make sure we're able to see the cluster
+      - aws eks describe-cluster --name eks-workshop
+      # update our config
+      - aws eks update-kubeconfig --name eks-workshop
+      # switch contexts
+      - k config set-context arn:aws:eks:us-east-2:097615209432:cluster/eks-workshop
+      - k get svc
