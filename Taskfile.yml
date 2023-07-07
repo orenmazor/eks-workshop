@@ -6,7 +6,7 @@ vars:
   GREETING: Hello, World!
 
 tasks:
-  connectivity:
+  connectivity-check:
     cmds:
       # make sure we're connected to aws
       - aws sts get-caller-identity
@@ -15,5 +15,5 @@ tasks:
       # update our config
       - aws eks update-kubeconfig --name eks-workshop
       # switch contexts
-      - k config set-context arn:aws:eks:us-east-2:097615209432:cluster/eks-workshop
-      - k get svc
+      - kubectl config set-context arn:aws:eks:us-east-2:097615209432:cluster/eks-workshop
+      - kubectl get svc
